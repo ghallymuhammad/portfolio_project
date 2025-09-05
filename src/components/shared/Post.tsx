@@ -8,20 +8,29 @@ type Props = {
   thumbnailUrl: string;
   title: string;
   publishedAt: string;
-  href: string;
+  href: string; // internal route like "/blog/1"
 };
 
 const Post = ({ thumbnailUrl, title, publishedAt, href }: Props) => {
   return (
     <div className={classNames(styles['post'], 'bg-white dark:bg-gray-700')}>
-      <Link href={href}>
-        <a className={styles['post-image']}>
-          <Image src={thumbnailUrl} height={384} width={512} layout="responsive" alt={title} />
-        </a>
+      {/* Link wraps the image; class goes on Link (no inner <a>) */}
+      <Link href={href} className={styles['post-image']} legacyBehavior>
+        <Image
+          src={thumbnailUrl}
+          width={512}
+          height={384}
+          alt={title}
+          className="h-auto w-full"
+          priority={false}
+        />
       </Link>
       <div className="p-6">
-        <Link href={href}>
-          <a className="block text-xl font-semibold hover:text-primary-500 hover:underline">{title}</a>
+        <Link
+          href={href}
+          className="block text-xl font-semibold hover:text-primary-500 hover:underline"
+          legacyBehavior>
+          {title}
         </Link>
         <time className="mt-2 inline-block text-gray-500">{publishedAt}</time>
       </div>

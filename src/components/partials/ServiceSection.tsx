@@ -17,19 +17,21 @@ const bgClasses = [
   'bg-teal-500 text-teal-100',
 ];
 
-const getBackgroundClass = (index: number) => {
-  return bgClasses[index % bgClasses.length];
-};
+const getBackgroundClass = (index: number) => bgClasses[index % bgClasses.length];
 
 const ServiceSection = () => {
   return (
     <>
       <SectionTitle>Services</SectionTitle>
+
       <div className="mt-10 grid gap-8 md:grid-cols-3">
         {services.map((service, index) => (
           <div
             key={index}
-            className={classNames('rounded-2xl py-8 px-4 text-center shadow-md md:px-8', getBackgroundClass(index))}
+            className={classNames(
+              'rounded-2xl py-8 px-4 text-center shadow-md md:px-8',
+              getBackgroundClass(index)
+            )}
           >
             <Image src={service.image} height={80} width={80} alt={service.name} />
             <h4 className="mt-4 text-xl font-semibold">{service.name}</h4>
@@ -37,10 +39,11 @@ const ServiceSection = () => {
           </div>
         ))}
       </div>
+
       <p className="mt-8 text-center">
         Looking for a custom service?{' '}
-        <Link href="/contact">
-          <a>Click here to contact me! &#128079;</a>
+        <Link href="/contact" className="underline underline-offset-2 hover:text-primary-600">
+          Click here to contact me! 👏
         </Link>
       </p>
     </>

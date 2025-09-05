@@ -11,59 +11,54 @@ const Menu = () => {
   const router = useRouter();
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const { theme, toggleTheme } = useTheme();
+
   return (
     <header className="header text-gray-700 dark:text-gray-200">
       <div className="mx-auto flex h-16 max-w-7xl items-center px-4 md:px-6">
-        <Link href="/">
-          <a className="text-3xl  font-bold">
-            <span>Pofology</span>
-            <span className="text-primary-500">.</span>
-          </a>
+        {/* BRAND */}
+        <Link href="/" className="text-3xl font-bold" legacyBehavior>
+          <span>Pofology</span>
+          <span className="text-primary-500">.</span>
         </Link>
+
+        {/* DESKTOP NAV */}
         <ul className="ml-auto hidden items-center md:flex">
           <li>
-            <Link href="/works">
-              <a
-                className={classNames(
-                  'inline-block px-4 font-semibold  transition-colors duration-300 hover:text-primary-600 hover:underline',
-                  {
-                    'text-primary-500': router.asPath == '/works',
-                  }
-                )}
-              >
-                Works
-              </a>
+            <Link
+              href="/works"
+              className={classNames(
+                'inline-block px-4 font-semibold transition-colors duration-300 hover:text-primary-600 hover:underline',
+                { 'text-primary-500': router.asPath === '/works' }
+              )}
+            >
+              Works
             </Link>
           </li>
           <li>
-            <Link href="/blog">
-              <a
-                className={classNames(
-                  'inline-block px-4 font-semibold  transition-colors duration-150 hover:text-primary-600 hover:underline',
-                  {
-                    'text-primary-500': router.asPath == '/blog',
-                  }
-                )}
-              >
-                Blog
-              </a>
+            <Link
+              href="/blog"
+              className={classNames(
+                'inline-block px-4 font-semibold transition-colors duration-150 hover:text-primary-600 hover:underline',
+                { 'text-primary-500': router.asPath === '/blog' }
+              )}
+            >
+              Blog
             </Link>
           </li>
           <li>
-            <Link href="/contact">
-              <a
-                className={classNames(
-                  'inline-block px-4 font-semibold  transition-colors duration-150 hover:text-primary-600 hover:underline',
-                  {
-                    'text-primary-500': router.asPath == '/contact',
-                  }
-                )}
-              >
-                Contact
-              </a>
+            <Link
+              href="/contact"
+              className={classNames(
+                'inline-block px-4 font-semibold transition-colors duration-150 hover:text-primary-600 hover:underline',
+                { 'text-primary-500': router.asPath === '/contact' }
+              )}
+            >
+              Contact
             </Link>
           </li>
         </ul>
+
+        {/* THEME TOGGLE */}
         <button
           type="button"
           className="ml-auto transition-colors duration-150 hover:text-primary-500 md:-mt-0.5 md:ml-3"
@@ -71,6 +66,8 @@ const Menu = () => {
         >
           {theme === Theme.LIGHT ? <BsMoonStars size={20} /> : <BsSun size={20} />}
         </button>
+
+        {/* MOBILE MENU TOGGLE */}
         <button
           type="button"
           onClick={() => setSidebarOpen(!sidebarOpen)}
@@ -79,8 +76,7 @@ const Menu = () => {
           <HiMenuAlt3 size={24} />
         </button>
       </div>
-
-      {/* Mobile menu */}
+      {/* MOBILE MENU */}
       <Transition.Root show={sidebarOpen} as={Fragment}>
         <Dialog as="div" className="fixed inset-0 z-40 flex md:hidden" onClose={setSidebarOpen}>
           <Transition.Child
@@ -94,6 +90,7 @@ const Menu = () => {
           >
             <Dialog.Overlay className="fixed inset-0 bg-gray-600 bg-opacity-75" />
           </Transition.Child>
+
           <Transition.Child
             as={Fragment}
             enter="transition ease-in-out duration-300 transform origin-right"
@@ -118,58 +115,60 @@ const Menu = () => {
                     type="button"
                     className="ml-1 flex h-10 w-10 items-center justify-center rounded-full focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
                     onClick={() => setSidebarOpen(false)}
+                    aria-label="Close menu"
                   >
                     <span className="text-white">&#10006;</span>
                   </button>
                 </div>
               </Transition.Child>
+
               <div className="flex h-full flex-col overflow-y-auto">
                 <div className="border-b px-2 pb-4 dark:border-gray-700">
-                  <Link href="/">
-                    <a className="text-3xl  font-bold">
-                      <span>Pofology</span>
-                      <span className="text-primary-500">.</span>
-                    </a>
+                  <Link href="/" className="text-3xl font-bold" legacyBehavior>
+                    <span>Pofology</span>
+                    <span className="text-primary-500">.</span>
                   </Link>
                 </div>
+
                 <nav className="mt-4 space-y-1 px-2">
-                  <Link href="/works">
-                    <a
-                      className={classNames(
-                        'group flex items-center px-2 py-2 text-base font-medium transition-colors duration-150 hover:text-primary-600',
-                        { 'text-primary-500': router.asPath == '/works' }
-                      )}
-                    >
-                      Works
-                    </a>
+                  <Link
+                    href="/works"
+                    className={classNames(
+                      'group flex items-center px-2 py-2 text-base font-medium transition-colors duration-150 hover:text-primary-600',
+                      { 'text-primary-500': router.asPath === '/works' }
+                    )}
+                    onClick={() => setSidebarOpen(false)}
+                  >
+                    Works
                   </Link>
-                  <Link href="/blog">
-                    <a
-                      className={classNames(
-                        { 'text-primary-500': router.asPath == '/blog' },
-                        'group flex items-center px-2 py-2 text-base font-medium transition-colors duration-150 hover:text-primary-600'
-                      )}
-                    >
-                      Blog
-                    </a>
+
+                  <Link
+                    href="/blog"
+                    className={classNames(
+                      'group flex items-center px-2 py-2 text-base font-medium transition-colors duration-150 hover:text-primary-600',
+                      { 'text-primary-500': router.asPath === '/blog' }
+                    )}
+                    onClick={() => setSidebarOpen(false)}
+                  >
+                    Blog
                   </Link>
-                  <Link href="/contact">
-                    <a
-                      className={classNames(
-                        { 'text-primary-500': router.asPath == '/contact' },
-                        'group flex items-center px-2 py-2 text-base font-medium transition-colors duration-150 hover:text-primary-600 '
-                      )}
-                    >
-                      Contact
-                    </a>
+
+                  <Link
+                    href="/contact"
+                    className={classNames(
+                      'group flex items-center px-2 py-2 text-base font-medium transition-colors duration-150 hover:text-primary-600',
+                      { 'text-primary-500': router.asPath === '/contact' }
+                    )}
+                    onClick={() => setSidebarOpen(false)}
+                  >
+                    Contact
                   </Link>
                 </nav>
               </div>
             </div>
           </Transition.Child>
-          <div className="w-14 flex-shrink-0" aria-hidden="true">
-            {/* Dummy element to force sidebar to shrink to fit close icon */}
-          </div>
+
+          <div className="w-14 flex-shrink-0" aria-hidden="true" />
         </Dialog>
       </Transition.Root>
     </header>
