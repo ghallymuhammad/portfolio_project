@@ -42,8 +42,12 @@ const ServiceSection = () => {
 
       <p className="mt-8 text-center">
         Looking for a custom service?{' '}
-        <Link href="/contact" className="underline underline-offset-2 hover:text-primary-600">
-          Click here to contact me! 👏
+        <Link
+          href="/contact"
+          className="underline underline-offset-2 hover:text-primary-600"
+          aria-label="Go to contact page"
+        >
+          <span>Click here to contact me! 👏</span>
         </Link>
       </p>
     </>

@@ -7,9 +7,10 @@ const RecentWorkSection = () => {
   return (
     <>
       <SectionTitle>Recent Works</SectionTitle>
+
       <div className="mt-10 grid gap-4 xs:grid-cols-2 md:grid-cols-3 md:gap-8">
         {works
-          .filter((_, index) => index < 6)
+          .slice(0, 6)
           .map((work) => (
             <Portfolio
               key={work.id}
@@ -20,9 +21,10 @@ const RecentWorkSection = () => {
             />
           ))}
       </div>
+
       <div className="mt-10 flex justify-center">
-        <Link href={'/works'} className="btn">
-          View All
+        <Link href="/works" className="btn" aria-label="View all works">
+          <span>View All</span>
         </Link>
       </div>
     </>

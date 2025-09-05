@@ -26,11 +26,11 @@ const Portfolio = ({ imageUrl, category, title, href }: Props) => {
         rel="noopener noreferrer"
         className={styles['portfolio-title']}
       >
-        {title}
+        <span>{title}</span>
       </a>
     ) : (
-      <Link href={href} className={styles['portfolio-title']} legacyBehavior>
-        {title}
+      <Link href={href} className={styles['portfolio-title']} aria-label={String(title)}>
+        <span>{title}</span>
       </Link>
     );
 
@@ -43,21 +43,20 @@ const Portfolio = ({ imageUrl, category, title, href }: Props) => {
         className={styles['portfolio-link']}
         aria-label={`Open ${title}`}
       >
-        <LinkIcon className="h-5 text-white" />
+        <span className="inline-flex">
+          <LinkIcon className="h-5 text-white" />
+        </span>
       </a>
     ) : (
-      <Link
-        href={href}
-        className={styles['portfolio-link']}
-        aria-label={`Open ${title}`}
-        legacyBehavior>
-        <LinkIcon className="h-5 text-white" />
+      <Link href={href} className={styles['portfolio-link']} aria-label={`Open ${title}`}>
+        <span className="inline-flex">
+          <LinkIcon className="h-5 text-white" />
+        </span>
       </Link>
     );
 
   return (
     <div className={classNames(styles['portfolio'], 'bg-white dark:bg-gray-700')}>
-      {/* layout="responsive" is deprecated; width/height + responsive classes */}
       <Image
         src={imageUrl}
         width={512}

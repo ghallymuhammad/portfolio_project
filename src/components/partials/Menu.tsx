@@ -1,14 +1,16 @@
+'use client';
+
 import { Theme, useTheme } from '@/hooks/use-theme';
 import { Dialog, Switch, Transition } from '@headlessui/react';
 import classNames from 'classnames';
 import Link from 'next/link';
-import { useRouter } from 'next/router';
+import { usePathname } from 'next/navigation';
 import { Fragment, useState } from 'react';
 import { BsMoonStars, BsSun } from 'react-icons/bs';
 import { HiMenuAlt3 } from 'react-icons/hi';
 
 const Menu = () => {
-  const router = useRouter();
+  const pathname = usePathname();
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const { theme, toggleTheme } = useTheme();
 
@@ -16,9 +18,11 @@ const Menu = () => {
     <header className="header text-gray-700 dark:text-gray-200">
       <div className="mx-auto flex h-16 max-w-7xl items-center px-4 md:px-6">
         {/* BRAND */}
-        <Link href="/" className="text-3xl font-bold" legacyBehavior>
-          <span>Pofology</span>
-          <span className="text-primary-500">.</span>
+        <Link href="/" className="text-3xl font-bold">
+          <span className="inline-flex">
+            <span>Pofology</span>
+            <span className="text-primary-500">.</span>
+          </span>
         </Link>
 
         {/* DESKTOP NAV */}
@@ -28,10 +32,10 @@ const Menu = () => {
               href="/works"
               className={classNames(
                 'inline-block px-4 font-semibold transition-colors duration-300 hover:text-primary-600 hover:underline',
-                { 'text-primary-500': router.asPath === '/works' }
+                { 'text-primary-500': pathname === '/works' }
               )}
             >
-              Works
+              <span>Works</span>
             </Link>
           </li>
           <li>
@@ -39,10 +43,10 @@ const Menu = () => {
               href="/blog"
               className={classNames(
                 'inline-block px-4 font-semibold transition-colors duration-150 hover:text-primary-600 hover:underline',
-                { 'text-primary-500': router.asPath === '/blog' }
+                { 'text-primary-500': pathname === '/blog' }
               )}
             >
-              Blog
+              <span>Blog</span>
             </Link>
           </li>
           <li>
@@ -50,10 +54,10 @@ const Menu = () => {
               href="/contact"
               className={classNames(
                 'inline-block px-4 font-semibold transition-colors duration-150 hover:text-primary-600 hover:underline',
-                { 'text-primary-500': router.asPath === '/contact' }
+                { 'text-primary-500': pathname === '/contact' }
               )}
             >
-              Contact
+              <span>Contact</span>
             </Link>
           </li>
         </ul>
@@ -62,7 +66,8 @@ const Menu = () => {
         <button
           type="button"
           className="ml-auto transition-colors duration-150 hover:text-primary-500 md:-mt-0.5 md:ml-3"
-          onClick={() => toggleTheme()}
+          onClick={toggleTheme}
+          aria-label="Toggle theme"
         >
           {theme === Theme.LIGHT ? <BsMoonStars size={20} /> : <BsSun size={20} />}
         </button>
@@ -72,10 +77,12 @@ const Menu = () => {
           type="button"
           onClick={() => setSidebarOpen(!sidebarOpen)}
           className="ml-5 flex text-gray-700 dark:text-gray-200 md:hidden"
+          aria-label="Open menu"
         >
           <HiMenuAlt3 size={24} />
         </button>
       </div>
+
       {/* MOBILE MENU */}
       <Transition.Root show={sidebarOpen} as={Fragment}>
         <Dialog as="div" className="fixed inset-0 z-40 flex md:hidden" onClose={setSidebarOpen}>
@@ -124,9 +131,11 @@ const Menu = () => {
 
               <div className="flex h-full flex-col overflow-y-auto">
                 <div className="border-b px-2 pb-4 dark:border-gray-700">
-                  <Link href="/" className="text-3xl font-bold" legacyBehavior>
-                    <span>Pofology</span>
-                    <span className="text-primary-500">.</span>
+                  <Link href="/" className="text-3xl font-bold" onClick={() => setSidebarOpen(false)}>
+                    <span className="inline-flex">
+                      <span>Pofology</span>
+                      <span className="text-primary-500">.</span>
+                    </span>
                   </Link>
                 </div>
 
@@ -135,33 +144,33 @@ const Menu = () => {
                     href="/works"
                     className={classNames(
                       'group flex items-center px-2 py-2 text-base font-medium transition-colors duration-150 hover:text-primary-600',
-                      { 'text-primary-500': router.asPath === '/works' }
+                      { 'text-primary-500': pathname === '/works' }
                     )}
                     onClick={() => setSidebarOpen(false)}
                   >
-                    Works
+                    <span>Works</span>
                   </Link>
 
                   <Link
                     href="/blog"
                     className={classNames(
                       'group flex items-center px-2 py-2 text-base font-medium transition-colors duration-150 hover:text-primary-600',
-                      { 'text-primary-500': router.asPath === '/blog' }
+                      { 'text-primary-500': pathname === '/blog' }
                     )}
                     onClick={() => setSidebarOpen(false)}
                   >
-                    Blog
+                    <span>Blog</span>
                   </Link>
 
                   <Link
                     href="/contact"
                     className={classNames(
                       'group flex items-center px-2 py-2 text-base font-medium transition-colors duration-150 hover:text-primary-600',
-                      { 'text-primary-500': router.asPath === '/contact' }
+                      { 'text-primary-500': pathname === '/contact' }
                     )}
                     onClick={() => setSidebarOpen(false)}
                   >
-                    Contact
+                    <span>Contact</span>
                   </Link>
                 </nav>
               </div>
