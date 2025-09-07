@@ -12,11 +12,11 @@ const TypeAnimation = dynamic(
 );
 
 const SOCIALS = [
-  { href: 'https://www.instagram.com', label: 'Instagram', Icon: FiInstagram },
-  { href: 'https://www.twitter.com',   label: 'Twitter',   Icon: FiTwitter   },
-  { href: 'https://www.facebook.com',  label: 'Facebook',  Icon: FiFacebook  },
+  { href: 'https://www.instagram.com/ghallymuhammad', label: 'Instagram', Icon: FiInstagram },
+  { href: 'https://www.twitter.com/ghallymullen',   label: 'Twitter',   Icon: FiTwitter   },
+  { href: 'https://www.facebook.com/dabelyuexwayjet',  label: 'Facebook',  Icon: FiFacebook  },
   { href: 'https://www.dribbble.com',  label: 'Dribbble',  Icon: FiDribbble  },
-  { href: 'https://www.github.com',    label: 'GitHub',    Icon: FiGithub    },
+  { href: 'https://www.github.com/ghallymuhammad',    label: 'GitHub',    Icon: FiGithub    },
 ];
 
 const HeroSection = () => {
@@ -39,7 +39,7 @@ const HeroSection = () => {
         </div>
 
         <h1 className="mt-4 text-center text-3xl font-extrabold tracking-tight sm:text-4xl">
-          Mostafizur Rahman
+          Muhammad Ghally
         </h1>
 
         <p className="mt-2 flex flex-wrap items-center justify-center text-lg text-gray-600 dark:text-gray-300">

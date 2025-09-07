@@ -20,7 +20,7 @@ const Menu = () => {
         {/* BRAND */}
         <Link href="/" className="text-3xl font-bold">
           <span className="inline-flex">
-            <span>Pofology</span>
+            <span>MG</span>
             <span className="text-primary-500">.</span>
           </span>
         </Link>
