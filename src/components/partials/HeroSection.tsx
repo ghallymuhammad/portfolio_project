@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import React from 'react';
-import { FiDribbble, FiFacebook, FiGithub, FiInstagram, FiTwitter } from 'react-icons/fi';
+import {FiFacebook, FiGithub, FiInstagram, FiTwitter } from 'react-icons/fi';
 import dynamic from 'next/dynamic';
 import Button from '@/components/form/Button';
 import HeroBackground from './HeroBackground';
@@ -15,7 +15,6 @@ const SOCIALS = [
   { href: 'https://www.instagram.com/ghallymuhammad', label: 'Instagram', Icon: FiInstagram },
   { href: 'https://www.twitter.com/ghallymullen',   label: 'Twitter',   Icon: FiTwitter   },
   { href: 'https://www.facebook.com/dabelyuexwayjet',  label: 'Facebook',  Icon: FiFacebook  },
-  { href: 'https://www.dribbble.com',  label: 'Dribbble',  Icon: FiDribbble  },
   { href: 'https://www.github.com/ghallymuhammad',    label: 'GitHub',    Icon: FiGithub    },
 ];
 
@@ -31,8 +30,8 @@ const HeroSection = () => {
         <div className="overflow-hidden rounded-full ring-1 ring-black/5 dark:ring-white/10">
           <Image
             src="/images/avatar/man.png"
-            width={180}
-            height={180}
+            width={160}
+            height={160}
             alt="Profile avatar"
             priority
           />
